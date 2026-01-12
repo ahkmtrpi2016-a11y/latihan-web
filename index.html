@@ -21,9 +21,18 @@
 
     <main>
         <section class="hero">
-    <h1 id="judul-utama">Selamat Datang di Website Saya</h1>
-    <p>Ini adalah latihan membuat website modern dan responsif.</p>
-    <button id="tombol-aksi">Pelajari Lebih Lanjut</button>
+    <section class="interaksi-container">
+    <h2>Sapa Pengunjung</h2>
+    
+    <form id="form-sapaan">
+        <div class="form-group">
+            <label for="input-nama">Siapa nama Anda?</label>
+            <input type="text" id="input-nama" placeholder="Ketik nama di sini..." required>
+        </div>
+        <button type="submit">Kirim Sapaan</button>
+    </form>
+
+    <div id="hasil-sapaan"></div>
 </section>
     </main>
 

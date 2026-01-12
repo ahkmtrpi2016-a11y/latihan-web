@@ -92,3 +92,38 @@ header {
     padding: 100px 20px;
     background-color: #f4f4f4;
 }
+/* ... code css sebelumnya ... */
+
+.interaksi-container {
+    max-width: 600px;
+    margin: 50px auto; /* Posisi tengah */
+    padding: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Sudut melengkung */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#hasil-sapaan {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e8f4fd; /* Warna biru muda */
+    border-left: 5px solid #2196F3;
+    display: none; /* Sembunyikan dulu sebelum ada isi */
+}

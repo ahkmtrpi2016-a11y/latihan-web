@@ -1,23 +1,30 @@
-alert("JavaScript terhubung!");
-// 1. Tangkap elemen HTML berdasarkan ID-nya
-const judul = document.getElementById('judul-utama');
-const tombol = document.getElementById('tombol-aksi');
+// 1. Tangkap elemen-elemen penting
+const formSapaan = document.getElementById('form-sapaan');
+const inputNama = document.getElementById('input-nama');
+const hasilDiv = document.getElementById('hasil-sapaan');
 
-// 2. Tambahkan fungsi untuk menangani klik
-function ubahTampilan() {
-    // Ubah teks pada judul
-    judul.textContent = "Halo! Terima kasih sudah berkunjung.";
+// 2. Tambahkan Event Listener pada FORM (bukan tombolnya saja)
+// Kita menggunakan 'submit' agar script jalan baik saat user klik tombol ATAU tekan Enter
+formSapaan.addEventListener('submit', function(event) {
     
-    // Ubah warna teks judul menjadi oranye
-    judul.style.color = "#f4a261";
+    // PENTING: Mencegah browser me-refresh halaman (behavior default form)
+    event.preventDefault();
 
-    // Ubah teks tombol agar user tahu aksi berhasil
-    tombol.textContent = "Berhasil Diklik!";
+    // Ambil nilai yang diketik user
+    const namaUser = inputNama.value;
+
+    // Validasi sederhana (Cek apakah kosong)
+    if(namaUser === "") {
+        alert("Nama tidak boleh kosong!");
+        return;
+    }
+
+    // Tampilkan hasilnya
+    hasilDiv.style.display = "block"; // Munculkan kotak hasil
+    hasilDiv.textContent = "Halo, " + namaUser + "! Selamat belajar coding.";
+
+    // Kosongkan input setelah submit (UX yang baik)
+    inputNama.value = "";
     
-    // Log ke Console (Fitur penting developer untuk pengecekan)
-    console.log("Tombol sudah diklik dan tampilan diperbarui.");
-}
-
-// 3. Pasang "telinga" (Event Listener) pada tombol
-// Saat 'click' terjadi, jalankan fungsi 'ubahTampilan'
-tombol.addEventListener('click', ubahTampilan);
+    console.log("Sapaan terkirim untuk: " + namaUser);
+});
