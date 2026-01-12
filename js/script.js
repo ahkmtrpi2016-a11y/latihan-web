@@ -1,1 +1,1 @@
-console.log("Website latihan siap 🚀");
+alert("JavaScript terhubung!");
