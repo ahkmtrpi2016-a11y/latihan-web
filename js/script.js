@@ -28,49 +28,81 @@ formSapaan.addEventListener('submit', function(event) {
     
     console.log("Sapaan terkirim untuk: " + namaUser);
 });
-// ... code js sebelumnya ...
+// ... (biarkan kode bagian sapaan di atas tetap ada) ...
 
-// === FITUR DAFTAR TARGET ===
+// === FITUR DAFTAR TARGET (DENGAN PENYIMPANAN) ===
 
 const inputTarget = document.getElementById('input-target');
 const tombolTambah = document.getElementById('tombol-tambah');
 const daftarList = document.getElementById('daftar-target');
 
-// Fungsi menambah item
+// 1. Fungsi untuk membuat elemen HTML List (Reusable)
+function buatItemList(text) {
+    const liBaru = document.createElement('li');
+    
+    const textSpan = document.createElement('span');
+    textSpan.textContent = text;
+    
+    const tombolHapus = document.createElement('button');
+    tombolHapus.textContent = "Hapus";
+    tombolHapus.className = "hapus-btn";
+
+    // Event Hapus
+    tombolHapus.addEventListener('click', function() {
+        daftarList.removeChild(liBaru);
+        simpanData(); // Update penyimpanan setelah menghapus
+    });
+
+    liBaru.appendChild(textSpan);
+    liBaru.appendChild(tombolHapus);
+    
+    daftarList.appendChild(liBaru);
+}
+
+// 2. Fungsi untuk menyimpan data ke Local Storage browser
+function simpanData() {
+    // Ambil semua teks yang ada di dalam <li> saat ini
+    const listItems = daftarList.querySelectorAll('li span');
+    const arrayData = [];
+
+    // Masukkan teks satu per satu ke dalam array
+    listItems.forEach(item => {
+        arrayData.push(item.textContent);
+    });
+
+    // Simpan array ke Local Storage (harus diubah jadi String/JSON dulu)
+    localStorage.setItem('targetBelajar', JSON.stringify(arrayData));
+}
+
+// 3. Fungsi untuk memuat data saat website dibuka
+function muatData() {
+    const dataTersimpan = localStorage.getItem('targetBelajar');
+    
+    if (dataTersimpan) {
+        // Ubah kembali string JSON menjadi Array
+        const arrayData = JSON.parse(dataTersimpan);
+        
+        // Buat elemen list untuk setiap data yang ditemukan
+        arrayData.forEach(text => {
+            buatItemList(text);
+        });
+    }
+}
+
+// 4. Event Listener Tombol Tambah
 tombolTambah.addEventListener('click', function() {
     const textIsi = inputTarget.value;
 
-    // Validasi: jangan tambah kalau kosong
     if (textIsi === "") {
         alert("Tulis target dulu dong!");
         return;
     }
 
-    // 1. Buat elemen LI baru (masih melayang di memori, belum di layar)
-    const liBaru = document.createElement('li');
+    buatItemList(textIsi); // Buat tampilan
+    simpanData();          // Simpan ke memory
     
-    // 2. Isi teks li tersebut
-    // Kita pakai span agar teks terpisah dari tombol hapus
-    const textSpan = document.createElement('span');
-    textSpan.textContent = textIsi;
-    
-    // 3. Buat tombol hapus
-    const tombolHapus = document.createElement('button');
-    tombolHapus.textContent = "Hapus";
-    tombolHapus.className = "hapus-btn"; // Agar kena style CSS tadi
-
-    // Fitur Hapus: Hapus elemen LI ini saat tombol merah diklik
-    tombolHapus.addEventListener('click', function() {
-        daftarList.removeChild(liBaru);
-    });
-
-    // 4. Rakit elemen-elemennya
-    liBaru.appendChild(textSpan);    // Masukkan teks ke li
-    liBaru.appendChild(tombolHapus); // Masukkan tombol ke li
-    
-    // 5. Terakhir: Tempelkan ke layar (ke dalam UL)
-    daftarList.appendChild(liBaru);
-
-    // Reset input
     inputTarget.value = "";
 });
+
+// 5. Jalankan fungsi muatData saat halaman pertama kali siap
+document.addEventListener('DOMContentLoaded', muatData);
