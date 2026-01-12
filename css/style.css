@@ -127,3 +127,52 @@ header {
     border-left: 5px solid #2196F3;
     display: none; /* Sembunyikan dulu sebelum ada isi */
 }
+/* ... code css sebelumnya ... */
+
+.list-container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.input-wrapper {
+    display: flex; /* Input dan tombol nempel rapi */
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.input-wrapper input {
+    flex: 1; /* Input memenuhi sisa ruang */
+    padding: 10px;
+}
+
+/* Styling untuk list item (li) yang nanti dibuat JS */
+#daftar-target {
+    list-style: none; /* Hilangkan titik bullet */
+    padding: 0;
+}
+
+#daftar-target li {
+    background: white;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Teks di kiri, tombol hapus di kanan */
+    align-items: center;
+    transition: 0.3s;
+}
+
+#daftar-target li:hover {
+    background-color: #f9f9f9; /* Efek saat mouse lewat */
+}
+
+/* Tombol hapus kecil */
+.hapus-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
