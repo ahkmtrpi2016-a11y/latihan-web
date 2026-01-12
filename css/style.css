@@ -42,3 +42,53 @@ nav {
 .nav-menu li a:hover {
   text-decoration: underline;
 }
+/* Reset CSS (Agar tampilan konsisten di semua browser) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Navbar Styling */
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+}
+
+.navbar {
+    display: flex; /* Membuat logo dan menu sejajar */
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex; /* Membuat menu Home, About, Contact sejajar ke samping */
+    gap: 20px;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-menu a:hover {
+    color: #f4a261; /* Efek warna saat mouse di atas menu */
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background-color: #f4f4f4;
+}
