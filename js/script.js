@@ -1,4 +1,7 @@
-// === FITUR DARK MODE ===
+// Nyalakan Animasi AOS
+AOS.init();
+
+// / === FITUR DARK MODE ===
 
 // 1. Tangkap elemen penting
 const htmlTag = document.documentElement; // Ini tag <html>
