@@ -106,3 +106,34 @@ tombolTambah.addEventListener('click', function() {
 
 // 5. Jalankan fungsi muatData saat halaman pertama kali siap
 document.addEventListener('DOMContentLoaded', muatData);
+// ... kode sebelumnya ...
+
+function buatItemList(text) {
+    const liBaru = document.createElement('li');
+    
+    // PERUBAHAN DISINI: Tambahkan class Bootstrap agar cantik
+    // 'list-group-item' = style dasar list
+    // 'd-flex justify-content-between' = agar teks di kiri, tombol di kanan
+    liBaru.className = "list-group-item d-flex justify-content-between align-items-center";
+    
+    const textSpan = document.createElement('span');
+    textSpan.textContent = text;
+    
+    const tombolHapus = document.createElement('button');
+    tombolHapus.textContent = "Hapus";
+    // PERUBAHAN TOMBOL: Gunakan class btn-danger (merah) dan btn-sm (kecil)
+    tombolHapus.className = "btn btn-danger btn-sm";
+
+    // ... sisa kode event listener hapus SAMA SEPERTI SEBELUMNYA ...
+    tombolHapus.addEventListener('click', function() {
+        daftarList.removeChild(liBaru);
+        simpanData();
+    });
+
+    liBaru.appendChild(textSpan);
+    liBaru.appendChild(tombolHapus);
+    
+    daftarList.appendChild(liBaru);
+}
+
+// ... sisa kode lainnya (simpanData, muatData, dll) JANGAN DIUBAH ...

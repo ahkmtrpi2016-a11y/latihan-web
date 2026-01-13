@@ -3,53 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latihan Web Profesional</title>
+    <title>Web Profesional Bootstrap</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-light">
 
-    <header>
-        <nav class="navbar">
-            <div class="logo">BrandSaya</div>
-            <ul class="nav-menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero">
-    <section class="interaksi-container">
-    <h2>Sapa Pengunjung</h2>
-    
-    <form id="form-sapaan">
-        <div class="form-group">
-            <label for="input-nama">Siapa nama Anda?</label>
-            <input type="text" id="input-nama" placeholder="Ketik nama di sini..." required>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">BrandSaya</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                </ul>
+            </div>
         </div>
-        <button type="submit">Kirim Sapaan</button>
-    </form>
+    </nav>
 
-    <div id="hasil-sapaan"></div>
-</section>
-    </main>
-<section class="list-container">
-    <h2>Daftar Target Belajar</h2>
-    
-    <div class="input-wrapper">
-        <input type="text" id="input-target" placeholder="Contoh: Belajar React JS">
-        <button id="tombol-tambah">Tambah</button>
+    <div class="container my-5">
+        
+        <div class="p-5 text-center bg-white rounded-3 shadow-sm mb-5">
+            <h1 id="judul-utama" class="display-5 fw-bold text-dark">Selamat Datang</h1>
+            <p class="lead text-muted">Latihan membuat website modern dengan teknologi Bootstrap 5.</p>
+            <button id="tombol-aksi" class="btn btn-primary btn-lg px-4 gap-3">Pelajari Lebih Lanjut</button>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h3 class="card-title h5 mb-3">Sapa Pengunjung</h3>
+                        <form id="form-sapaan">
+                            <div class="mb-3">
+                                <label for="input-nama" class="form-label">Siapa nama Anda?</label>
+                                <input type="text" class="form-control" id="input-nama" placeholder="Ketik nama..." required>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100">Kirim Sapaan</button>
+                        </form>
+                        <div id="hasil-sapaan" class="alert alert-info mt-3" style="display: none;" role="alert"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h3 class="card-title h5 mb-3">Target Belajar</h3>
+                        <div class="input-group mb-3">
+                            <input type="text" id="input-target" class="form-control" placeholder="Tulis target baru...">
+                            <button class="btn btn-primary" type="button" id="tombol-tambah">Tambah</button>
+                        </div>
+                        
+                        <ul id="daftar-target" class="list-group list-group-flush">
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <ul id="daftar-target">
-        </ul>
-</section>
-    <footer>
-        <p>&copy; 2024 Latihan Web. All rights reserved.</p>
+    <footer class="text-center py-4 text-muted border-top mt-5">
+        <p>&copy; 2024 Latihan Web. Built with Bootstrap.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
