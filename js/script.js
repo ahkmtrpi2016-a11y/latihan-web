@@ -1,3 +1,43 @@
+// === FITUR DARK MODE ===
+
+// 1. Tangkap elemen penting
+const htmlTag = document.documentElement; // Ini tag <html>
+const tombolTema = document.getElementById('tombol-tema');
+const temaTersimpan = localStorage.getItem('temaWebsite');
+
+// 2. Fungsi untuk mengubah tampilan
+function aturTema(tema) {
+    if (tema === 'dark') {
+        htmlTag.setAttribute('data-bs-theme', 'dark');
+        tombolTema.textContent = "☀️"; // Ganti ikon jadi matahari
+        tombolTema.className = "btn btn-outline-warning"; // Ganti warna outline tombol
+        localStorage.setItem('temaWebsite', 'dark'); // Simpan ke memori
+    } else {
+        htmlTag.setAttribute('data-bs-theme', 'light');
+        tombolTema.textContent = "🌙"; // Ganti ikon jadi bulan
+        tombolTema.className = "btn btn-outline-dark"; // Ganti warna outline tombol
+        localStorage.setItem('temaWebsite', 'light');
+    }
+}
+
+// 3. Cek kondisi awal saat web dibuka
+if (temaTersimpan === 'dark') {
+    aturTema('dark');
+} else {
+    aturTema('light');
+}
+
+// 4. Event Listener saat tombol diklik
+tombolTema.addEventListener('click', function() {
+    // Cek tema apa yang sedang aktif sekarang
+    const temaAktif = htmlTag.getAttribute('data-bs-theme');
+    
+    if (temaAktif === 'dark') {
+        aturTema('light');
+    } else {
+        aturTema('dark');
+    }
+});
 // 1. Tangkap elemen-elemen penting
 const formSapaan = document.getElementById('form-sapaan');
 const inputNama = document.getElementById('input-nama');

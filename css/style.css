@@ -3,3 +3,12 @@ body {
     /* Contoh: Membuat scrollbar lebih halus */
     scroll-behavior: smooth;
 }
+body {
+    /* Transisi halus untuk semua properti warna selama 0.5 detik */
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Pastikan elemen lain juga transisi halus */
+.card, .navbar, button, input {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
