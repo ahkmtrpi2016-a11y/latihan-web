@@ -49,7 +49,22 @@ const hasilDiv = document.getElementById('hasil-sapaan');
 // 2. Tambahkan Event Listener pada FORM (bukan tombolnya saja)
 // Kita menggunakan 'submit' agar script jalan baik saat user klik tombol ATAU tekan Enter
 formSapaan.addEventListener('submit', function(event) {
-    
+    // === TAMBAHAN FITUR SUARA ===
+    if ('speechSynthesis' in window) {
+        // Buat kalimat yang akan diucapkan
+        const pesanSuara = new SpeechSynthesisUtterance("Halo " + namaUser + ", selamat datang di website saya.");
+        
+        // Atur bahasa (ID untuk Indonesia, kalau browser mendukung)
+        pesanSuara.lang = 'id-ID'; 
+        pesanSuara.rate = 0.9; // Kecepatan bicara (sedikit diperlambat)
+        
+        // Bicara!
+        window.speechSynthesis.speak(pesanSuara);
+    } else {
+        console.log("Browser tidak mendukung fitur suara");
+    }
+
+    // ... sisa kode reset input ...
     // PENTING: Mencegah browser me-refresh halaman (behavior default form)
     event.preventDefault();
 
@@ -180,3 +195,35 @@ function buatItemList(text) {
 }
 
 // ... sisa kode lainnya (simpanData, muatData, dll) JANGAN DIUBAH ...
+// === FITUR CANGGIH: API CUACA REAL-TIME ===
+
+function cekCuaca() {
+    const boxCuaca = document.getElementById('widget-cuaca');
+    const txtSuhu = document.getElementById('suhu-kota');
+    const txtAngin = document.getElementById('kecepatan-angin');
+
+    // Koordinat Jakarta (Latitude, Longitude)
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=-6.2088&longitude=106.8456&current_weather=true";
+
+    // FETCH: Mengambil data dari internet
+    fetch(url)
+        .then(response => response.json()) // Ubah data mentah jadi JSON (objek JS)
+        .then(data => {
+            // Ambil data spesifik
+            const suhu = data.current_weather.temperature;
+            const angin = data.current_weather.windspeed;
+
+            // Tampilkan ke layar
+            txtSuhu.textContent = suhu;
+            txtAngin.textContent = angin;
+            boxCuaca.style.display = 'block'; // Munculkan widget
+            
+            console.log("Data cuaca berhasil diambil:", data);
+        })
+        .catch(error => {
+            console.error("Gagal mengambil cuaca:", error);
+        });
+}
+
+// Jalankan fungsi saat halaman dibuka
+cekCuaca();
